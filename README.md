@@ -4,14 +4,14 @@ Common eslint configuration
 Installation
 ------------
 ```bash
-npm install -D @keeex/eslint-config
+npm install -D @cley_faye/eslint-config
 ```
 
 Usage
 -----
 Create an eslint configuration file at the root of your project named `.eslintrc.js` containing the following:
 ```JavaScript
-const eslintConfig = require("@keeex/eslint-config");
+const eslintConfig = require("@cley_faye/eslint-config");
 module.exports = eslintConfig(
   {
     base: true,
