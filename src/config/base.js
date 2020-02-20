@@ -23,10 +23,10 @@ const allowedIdentifiersGen = function *() {
   }
 
   for (const exceptionName of [
-    "id",
-    "db",
-    "Op",
-    "_L",
+    "id", // Common identifier
+    "db", // database
+    "Op", // constants from sequelize
+    "up", // sequelize migrations, also a word
   ]) {
     yield exceptionName;
   }
@@ -261,7 +261,12 @@ module.exports = {
     ],
     "max-len": [
       "error",
-      {"ignoreUrls": true},
+      {
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+      },
     ],
     "max-lines": [
       "error",
@@ -349,7 +354,10 @@ module.exports = {
     "arrow-body-style": ["error"],
     "arrow-parens": ["error"],
     "arrow-spacing": ["error"],
-    "generator-star-spacing": ["error"],
+    "generator-star-spacing": [
+      "error",
+      "after",
+    ],
     "no-duplicate-imports": ["error"],
     "no-useless-computed-key": ["error"],
     "no-useless-constructor": ["error"],
