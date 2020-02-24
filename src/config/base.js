@@ -5,33 +5,6 @@ const {
   maxStatements,
 } = require("./common");
 
-/**
- * Allow one letter lowercase and one letter prefixed with _
- */
-const allowedIdentifiersGen = function *() {
-  for (const prefix of [
-    "",
-    "_",
-  ]) {
-    for (
-      let i = "a".charCodeAt(0);
-      i <= "z".charCodeAt(0);
-      ++i
-    ) {
-      yield `${prefix}${String.fromCharCode(i)}`;
-    }
-  }
-
-  for (const exceptionName of [
-    "id", // Common identifier
-    "db", // database
-    "Op", // constants from sequelize
-    "up", // sequelize migrations, also a word
-  ]) {
-    yield exceptionName;
-  }
-};
-
 module.exports = {
   extendsBase: ["eslint:recommended"],
   rules: {
@@ -171,7 +144,7 @@ module.exports = {
     "no-undef-init": ["error"],
     "no-unused-vars": [
       "warn",
-      {"varsIgnorePattern": "^_.*"},
+      {"argsIgnorePattern": "^_.*"},
     ],
     "no-use-before-define": ["error"],
     "callback-return": ["warn"],
@@ -229,9 +202,8 @@ module.exports = {
     "id-length": [
       "error",
       {
-        "min": 3,
-        "max": 30,
-        "exceptions": [...allowedIdentifiersGen()],
+        "min": 1,
+        "max": 32,
       },
     ],
     "implicit-arrow-linebreak": ["error"],
@@ -261,12 +233,7 @@ module.exports = {
     ],
     "max-len": [
       "error",
-      {
-        "ignoreUrls": true,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true,
-      },
+      {"ignoreUrls": true},
     ],
     "max-lines": [
       "error",
@@ -352,7 +319,10 @@ module.exports = {
     "template-tag-spacing": ["error"],
     "unicode-bom": ["error"],
     "arrow-body-style": ["error"],
-    "arrow-parens": ["error"],
+    "arrow-parens": [
+      "error",
+      "as-needed",
+    ],
     "arrow-spacing": ["error"],
     "generator-star-spacing": [
       "error",
