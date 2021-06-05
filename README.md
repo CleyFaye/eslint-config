@@ -1,6 +1,10 @@
 Common eslint configuration
 ===========================
 
+Deprecation
+-----------
+This is maintained as @keeex/eslint-config
+
 Installation
 ------------
 
